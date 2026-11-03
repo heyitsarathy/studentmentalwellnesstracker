@@ -1,0 +1,35 @@
+{
+  "moods": [
+    {
+      "id": "m_1792266048770_fx3n7",
+      "userId": "anon_demo_test",
+      "rating": 4,
+      "moodName": "Good",
+      "emoji": "🙂",
+      "tags": [
+        "Academics",
+        "Sleep"
+      ],
+      "note": "Feeling well rested after studying",
+      "timestamp": "2026-10-17T19:40:48.770Z"
+    }
+  ],
+  "reports": [
+    {
+      "id": "rep_1792266048785_luuso",
+      "reporterId": "anon_reporter",
+      "reportedUser": "TroublesomePeer",
+      "messageContent": "Harmful message snippet",
+      "room": "general",
+      "reason": "Harassment or cyberbullying",
+      "timestamp": "2026-10-17T19:40:48.785Z",
+      "status": "pending"
+    }
+  ],
+  "crisisLogs": [
+    {
+      "type": "test_emergency_click",
+      "timestamp": "2026-10-17T19:40:48.793Z"
+    }
+  ]
+}

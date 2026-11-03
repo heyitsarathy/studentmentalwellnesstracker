@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Wellness Resource Library | MindHaven</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+</head>
+<body>
+
+  <!-- Universal Crisis Top Banner -->
+  <aside class="crisis-top-banner" role="alert" aria-label="Urgent Crisis Resources">
+    <div class="crisis-banner-content">
+      <span class="crisis-badge-urgent">URGENT HELP</span>
+      <span>In acute distress? Reach out to <strong>988</strong> (Call/Text 24/7) or local emergency services.</span>
+      <a href="tel:988" class="crisis-call-link">Call or Text 988 Now &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🌱</span>
+      <div>
+        <span>MindHaven</span>
+        <span class="brand-tagline">Safe & Anonymous Student Space</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="chat.html">💬 Peer Chat</a></li>
+      <li><a href="chatbot.html">🤖 Crisis Bot</a></li>
+      <li><a href="resources.html" class="active">🌿 Resources</a></li>
+      <li><a href="mood.html">📊 Mood Tracker</a></li>
+      <li><a href="hotlines.html">📞 Hotlines</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-ambient" id="ambientToggle" title="Play soothing ambient rain sound">
+        🎧 Ambient Sound
+      </button>
+
+      <div class="user-badge current-user-badge" title="Click to regenerate anonymous username">
+        <span class="author-dot" style="background:#3182ce"></span>
+        <span>Loading...</span>
+      </div>
+
+      <button class="btn-crisis-quick" onclick="CrisisModal.open()" aria-label="Open emergency crisis resources">
+        🚨 Get Help Now
+      </button>
+
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+
+    <div class="page-header">
+      <h1>Student Self-Help & Coping Toolkit</h1>
+      <p>Interactive tools, somatic grounding practices, and reflection prompts designed specifically for campus anxiety and study overwhelm.</p>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-nav" role="tablist">
+      <button class="tab-btn active" data-tab="breathing" role="tab">
+        🌬️ Guided Breathing
+      </button>
+      <button class="tab-btn" data-tab="grounding" role="tab">
+        ✋ 5-4-3-2-1 Grounding
+      </button>
+      <button class="tab-btn" data-tab="journaling" role="tab">
+        ✍️ Journaling Scratchpad
+      </button>
+      <button class="tab-btn" data-tab="coping" role="tab">
+        🧠 Coping Strategies
+      </button>
+    </div>
+
+    <!-- TAB 1: Breathing Exercise -->
+    <section id="breathing" class="tab-content active" role="tabpanel">
+      <div class="breathing-box">
+        <h2>Interactive Breathwork Coach</h2>
+        <p style="color:var(--text-muted); max-width:550px; margin:8px auto 24px; font-size:0.95rem;">
+          Controlled breathing activates the parasympathetic nervous system (vagus nerve), telling your brain that you are physically safe.
+        </p>
+
+        <!-- Technique Selector -->
+        <div class="technique-selector">
+          <button class="tech-btn active" data-preset="box">
+            Box Breathing (4-4-4-4 Anti-Panic)
+          </button>
+          <button class="tech-btn" data-preset="478">
+            4-7-8 Relaxing Breath (Sleep & Deep Calm)
+          </button>
+          <button class="tech-btn" data-preset="calm">
+            Calm & Deep (4-6 Flow)
+          </button>
+        </div>
+
+        <!-- Breathing Visual Circle -->
+        <div class="breath-circle-container">
+          <div class="breath-circle-outer" id="breathCircle">
+            <div class="breath-instruction" id="breathInstruction">Ready?</div>
+            <div class="breath-timer" id="breathTimer">4s</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="breathing-controls">
+          <button class="btn btn-primary" id="breathStartBtn">
+            ▶️ Start Breathing
+          </button>
+          <button class="btn btn-secondary" id="breathResetBtn">
+            ↺ Reset
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 5-4-3-2-1 Sensory Grounding -->
+    <section id="grounding" class="tab-content" role="tabpanel">
+      <div style="background:#ffffff; border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:24px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+          <div>
+            <h2 style="font-size:1.3rem; margin-bottom:4px;">5-4-3-2-1 Sensory Grounding Tool</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem;">
+              When panic pulls your mind into future catastrophes, grounding anchors you back into physical reality.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span id="groundingCount" style="font-weight:700; font-size:0.85rem; color:var(--primary);">0 of 5 anchored</span>
+            <button class="btn btn-secondary" id="clearGroundingBtn" style="padding:6px 14px; font-size:0.8rem;">
+              Clear All
+            </button>
+          </div>
+        </div>
+
+        <div style="background:#edf2f7; border-radius:999px; height:8px; overflow:hidden; margin-bottom:24px;">
+          <div id="groundingProgress" style="background:var(--sage); width:0%; height:100%; transition:width 0.3s ease;"></div>
+        </div>
+
+        <div class="grounding-grid">
+          <!-- Step 5 -->
+          <div class="grounding-card">
+            <div class="grounding-step-header">
+              <span class="grounding-badge">5</span>
+              <strong>Things you can SEE</strong>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">Look around: shadow, book spine, coffee mug, tree branch, pen.</p>
+            <input type="text" class="grounding-items-input" placeholder="1. I see..." />
+            <input type="text" class="grounding-items-input" placeholder="2. I see..." />
+            <input type="text" class="grounding-items-input" placeholder="3. I see..." />
+            <input type="text" class="grounding-items-input" placeholder="4. I see..." />
+            <input type="text" class="grounding-items-input" placeholder="5. I see..." />
+          </div>
+
+          <!-- Step 4 -->
+          <div class="grounding-card">
+            <div class="grounding-step-header">
+              <span class="grounding-badge">4</span>
+              <strong>Things you can TOUCH</strong>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">Feel the texture of your jeans, desk edge, shoes on floor, hair.</p>
+            <input type="text" class="grounding-items-input" placeholder="1. I feel..." />
+            <input type="text" class="grounding-items-input" placeholder="2. I feel..." />
+            <input type="text" class="grounding-items-input" placeholder="3. I feel..." />
+            <input type="text" class="grounding-items-input" placeholder="4. I feel..." />
+          </div>
+
+          <!-- Step 3 -->
+          <div class="grounding-card">
+            <div class="grounding-step-header">
+              <span class="grounding-badge">3</span>
+              <strong>Things you can HEAR</strong>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">Computer hum, distant traffic, footsteps, clock ticking.</p>
+            <input type="text" class="grounding-items-input" placeholder="1. I hear..." />
+            <input type="text" class="grounding-items-input" placeholder="2. I hear..." />
+            <input type="text" class="grounding-items-input" placeholder="3. I hear..." />
+          </div>
+
+          <!-- Step 2 -->
+          <div class="grounding-card">
+            <div class="grounding-step-header">
+              <span class="grounding-badge">2</span>
+              <strong>Things you can SMELL</strong>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">Fresh air, coffee, sweater, shampoo, or hand soap.</p>
+            <input type="text" class="grounding-items-input" placeholder="1. I smell..." />
+            <input type="text" class="grounding-items-input" placeholder="2. I smell..." />
+          </div>
+
+          <!-- Step 1 -->
+          <div class="grounding-card">
+            <div class="grounding-step-header">
+              <span class="grounding-badge">1</span>
+              <strong>Thing you can TASTE</strong>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">A sip of cold water, mint, tea, or aftertaste of lunch.</p>
+            <input type="text" class="grounding-items-input" placeholder="1. I taste..." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Guided Journaling Scratchpad -->
+    <section id="journaling" class="tab-content" role="tabpanel">
+      <div class="journal-layout">
+
+        <!-- Prompt Picker -->
+        <div class="prompt-picker">
+          <h2>Reflective Journal Prompts</h2>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
+            Click any prompt to automatically insert it into your private local scratchpad.
+          </p>
+
+          <div style="font-size:0.82rem; font-weight:700; color:var(--primary); text-transform:uppercase;">
+            Academic Overwhelm
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-card" data-prompt="What is one realistic boundary I need to set with my coursework this week?">
+              "What is one realistic boundary I need to set with my coursework this week?"
+            </div>
+            <div class="prompt-card" data-prompt="If my grades or GPA were erased from memory, what would I genuinely still be curious to learn?">
+              "If my grades were erased, what would I still be curious to learn?"
+            </div>
+          </div>
+
+          <div style="font-size:0.82rem; font-weight:700; color:var(--sage); text-transform:uppercase; margin-top:16px;">
+            Emotional Venting & Compassion
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-card" data-prompt="What is the heaviest emotional weight I am carrying today, and what would it look like to set it down for 1 hour?">
+              "What is the heaviest weight I'm carrying today, and can I set it down for 1 hour?"
+            </div>
+            <div class="prompt-card" data-prompt="If a dear friend walked into my room feeling the way I do right now, what would I say to comfort them?">
+              "What would I say to comfort a dear friend feeling how I feel right now?"
+            </div>
+            <div class="prompt-card" data-prompt="Three tiny things that went okay today despite how tough things felt:">
+              "Three tiny things that went okay today despite how tough things felt:"
+            </div>
+          </div>
+        </div>
+
+        <!-- Private Digital Scratchpad -->
+        <div class="journal-scratchpad">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <div>
+              <h2 style="font-size:1.2rem;">Private Local Scratchpad</h2>
+              <span style="font-size:0.75rem; color:var(--sage); font-weight:700;">🔒 Stored strictly in your browser (Never sent to any server)</span>
+            </div>
+          </div>
+
+          <textarea
+            id="journalText"
+            class="journal-textarea"
+            placeholder="Write freely. Brain-dump worries, write about your day, or answer one of the prompts on the left..."
+          ></textarea>
+
+          <div class="journal-actions">
+            <button class="btn btn-secondary" id="clearJournalBtn" style="padding:6px 14px; font-size:0.82rem;">
+              🗑️ Clear
+            </button>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-secondary" id="copyJournalBtn" style="padding:6px 14px; font-size:0.82rem;">
+                📋 Copy
+              </button>
+              <button class="btn btn-primary" id="downloadJournalBtn" style="padding:6px 14px; font-size:0.82rem;">
+                💾 Download .txt
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 4: Coping Strategies & Mental Frameworks -->
+    <section id="coping" class="tab-content" role="tabpanel">
+      <div class="features-grid">
+
+        <article class="feature-card">
+          <div class="feature-icon-wrapper feature-icon-red">⚡</div>
+          <h3>Acute Panic Attack Protocol</h3>
+          <p>
+            When heart rate surges and hyperventilation begins:
+          </p>
+          <ul style="padding-left:18px; font-size:0.88rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+            <li><strong>Change Temperature:</strong> Splash cold water on your face or hold an ice cube (triggers the mammalian dive reflex).</li>
+            <li><strong>Prolong the Exhale:</strong> Breathe out twice as long as you breathe in (e.g., inhale 3s, exhale 6s).</li>
+            <li><strong>Name Reality:</strong> Say out loud: <em>"My nervous system is having a false alarm. I am safe in this room."</em></li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon-wrapper feature-icon-blue">⏱️</div>
+          <h3>The 15-Minute Study Rule</h3>
+          <p>
+            For overwhelming paralysis when facing huge papers or exams:
+          </p>
+          <ul style="padding-left:18px; font-size:0.88rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+            <li>Lower the bar to an absurd degree: agree to sit down for just 15 minutes.</li>
+            <li>Write one single messy paragraph or read 2 pages.</li>
+            <li>When the alarm goes off, you have full psychological permission to stop. 80% of the time, overcoming the initiation barrier is all you needed.</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon-wrapper feature-icon-purple">🌙</div>
+          <h3>Student Insomnia Protocol</h3>
+          <p>
+            Stopping late-night rumination:
+          </p>
+          <ul style="padding-left:18px; font-size:0.88rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+            <li><strong>The 20-Minute Bed Rule:</strong> If awake for more than 20 minutes, get out of bed. Sit in dim light and read a boring book until drowsy.</li>
+            <li><strong>Bedside Worry Pad:</strong> Write down your to-do list so your subconscious stops cycling through them.</li>
+            <li>Turn on our ambient sound generator in the navbar.</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon-wrapper feature-icon-green">🏫</div>
+          <h3>How to Use Campus Counseling</h3>
+          <p>
+            Student health resources you've already paid for:
+          </p>
+          <ul style="padding-left:18px; font-size:0.88rem; color:var(--text-muted); display:flex; flex-direction:column; gap:6px;">
+            <li>Most universities provide 6–12 free counseling sessions per academic year covered by your student activity fees.</li>
+            <li>Same-day drop-in triage hours exist for acute distress.</li>
+            <li>Group therapy for social anxiety, grief, and graduate student burnout are widely available.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Core Scripts -->
+  <script src="js/main.js?v=2.6"></script>
+  <script src="js/resources.js?v=2.6"></script>
+</body>
+</html>

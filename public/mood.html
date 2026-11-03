@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Mood & Streak Tracker | MindHaven</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+
+  <!-- Universal Crisis Top Banner -->
+  <aside class="crisis-top-banner" role="alert" aria-label="Urgent Crisis Resources">
+    <div class="crisis-banner-content">
+      <span class="crisis-badge-urgent">URGENT HELP</span>
+      <span>In emotional distress? Free, confidential support is available: Call or text <strong>988</strong> anytime.</span>
+      <a href="tel:988" class="crisis-call-link">Call or Text 988 Now &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🌱</span>
+      <div>
+        <span>MindHaven</span>
+        <span class="brand-tagline">Safe & Anonymous Student Space</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="chat.html">💬 Peer Chat</a></li>
+      <li><a href="chatbot.html">🤖 Crisis Bot</a></li>
+      <li><a href="resources.html">🌿 Resources</a></li>
+      <li><a href="mood.html" class="active">📊 Mood Tracker</a></li>
+      <li><a href="hotlines.html">📞 Hotlines</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-ambient" id="ambientToggle" title="Play soothing ambient rain sound">
+        🎧 Ambient Sound
+      </button>
+
+      <div class="user-badge current-user-badge" title="Click to regenerate anonymous username">
+        <span class="author-dot" style="background:#3182ce"></span>
+        <span>Loading...</span>
+      </div>
+
+      <button class="btn-crisis-quick" onclick="CrisisModal.open()" aria-label="Open emergency crisis resources">
+        🚨 Get Help Now
+      </button>
+
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+
+    <div class="page-header">
+      <h1>Anonymous Daily Mood Tracker</h1>
+      <p>Log a 10-second daily pause to discover patterns between academics, sleep, and emotional health. Stored strictly under your anonymous token with full data purge control.</p>
+    </div>
+
+    <div class="mood-container">
+
+      <!-- Left Column: Daily Check-In Form -->
+      <section class="mood-card">
+        <h2>✏️ How are you feeling today?</h2>
+        <p class="subtitle">Select the emoji that best reflects your emotional state right now:</p>
+
+        <form id="moodForm">
+          <!-- 5-Point Emoji Scale -->
+          <div class="emoji-scale-selector">
+            <button type="button" class="emoji-btn" data-rating="1">
+              <span class="emoji-symbol">😣</span>
+              <span class="emoji-label">Struggling</span>
+            </button>
+
+            <button type="button" class="emoji-btn" data-rating="2">
+              <span class="emoji-symbol">😔</span>
+              <span class="emoji-label">Down</span>
+            </button>
+
+            <button type="button" class="emoji-btn selected" data-rating="3">
+              <span class="emoji-symbol">😐</span>
+              <span class="emoji-label">Okay</span>
+            </button>
+
+            <button type="button" class="emoji-btn" data-rating="4">
+              <span class="emoji-symbol">🙂</span>
+              <span class="emoji-label">Good</span>
+            </button>
+
+            <button type="button" class="emoji-btn" data-rating="5">
+              <span class="emoji-symbol">😄</span>
+              <span class="emoji-label">Great</span>
+            </button>
+          </div>
+
+          <!-- Emotional Drivers / Context Tags -->
+          <div class="mood-section-label">What's influencing your mood? (Optional tags)</div>
+          <div class="tags-selector">
+            <span class="tag-chip" data-tag="Academics">📚 Academics</span>
+            <span class="tag-chip" data-tag="Exams">📝 Exams</span>
+            <span class="tag-chip" data-tag="Sleep">😴 Sleep</span>
+            <span class="tag-chip" data-tag="Social">💬 Social</span>
+            <span class="tag-chip" data-tag="Exercise">🏃 Exercise</span>
+            <span class="tag-chip" data-tag="Solitude">🧘 Solitude</span>
+            <span class="tag-chip" data-tag="Family">🏠 Family</span>
+            <span class="tag-chip" data-tag="Health">🍎 Health</span>
+            <span class="tag-chip" data-tag="Burnout">🔥 Burnout</span>
+          </div>
+
+          <!-- Short Reflective Note -->
+          <div class="mood-section-label">One sentence note to yourself:</div>
+          <textarea
+            id="moodNote"
+            class="mood-notes-input"
+            placeholder="e.g., 'Finished midterm essay today, feeling relieved but drained' or 'Didn't sleep well'..."
+            maxlength="400"
+          ></textarea>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">
+            💾 Log Daily Check-In
+          </button>
+        </form>
+      </section>
+
+      <!-- Right Column: Visual Trend Curve & Check-In History -->
+      <section class="mood-card">
+        <h2>📈 Your 7-Day Wellness Trend</h2>
+        <p class="subtitle">Visual representation of your emotional fluctuations over time:</p>
+
+        <!-- Stats Overview Row -->
+        <div class="mood-stats-row">
+          <div class="stat-box">
+            <div class="stat-number" id="statTotalCount">0</div>
+            <div class="stat-label">Total Logs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="statAvgScore">--</div>
+            <div class="stat-label">Avg Mood</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="statTopTag" style="font-size:1.1rem; padding-top:6px;">--</div>
+            <div class="stat-label">Top Factor</div>
+          </div>
+        </div>
+
+        <!-- SVG Trend Chart Wrapper -->
+        <div class="chart-wrapper" id="moodChartWrapper">
+          <span style="color:var(--text-light); font-size:0.85rem;">Loading trend chart...</span>
+        </div>
+
+        <!-- Check-in History Feed -->
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; margin-top:20px;">
+          <h3 style="font-size:1rem; font-weight:700;">Recent Check-Ins</h3>
+          <button id="clearMoodDataBtn" class="btn btn-secondary" style="padding:4px 10px; font-size:0.75rem; color:var(--crisis);" title="Permanently delete all mood records">
+            🗑️ Wipe My Logs
+          </button>
+        </div>
+
+        <div class="history-list" id="moodHistoryList">
+          <!-- Dynamically populated -->
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Core Scripts -->
+  <script src="js/main.js?v=2.6"></script>
+  <script src="js/mood.js?v=2.6"></script>
+</body>
+</html>

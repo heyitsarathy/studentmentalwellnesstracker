@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HopeBot - Crisis Support Chatbot | MindHaven</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+</head>
+<body>
+
+  <!-- Universal Crisis Top Banner -->
+  <aside class="crisis-top-banner" role="alert" aria-label="Urgent Crisis Resources">
+    <div class="crisis-banner-content">
+      <span class="crisis-badge-urgent">URGENT HELP</span>
+      <span>If you are in crisis, please contact <strong>988</strong> (Call/Text 24/7) or local emergency services.</span>
+      <a href="tel:988" class="crisis-call-link">Call or Text 988 Now &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🌱</span>
+      <div>
+        <span>MindHaven</span>
+        <span class="brand-tagline">Safe & Anonymous Student Space</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="chat.html">💬 Peer Chat</a></li>
+      <li><a href="chatbot.html" class="active">🤖 Crisis Bot</a></li>
+      <li><a href="resources.html">🌿 Resources</a></li>
+      <li><a href="mood.html">📊 Mood Tracker</a></li>
+      <li><a href="hotlines.html">📞 Hotlines</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-ambient" id="ambientToggle" title="Play soothing ambient rain sound">
+        🎧 Ambient Sound
+      </button>
+
+      <div class="user-badge current-user-badge" title="Click to regenerate anonymous username">
+        <span class="author-dot" style="background:#3182ce"></span>
+        <span>Loading...</span>
+      </div>
+
+      <button class="btn-crisis-quick" onclick="CrisisModal.open()" aria-label="Open emergency crisis resources">
+        🚨 Get Help Now
+      </button>
+
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Main Chatbot Container -->
+  <main class="main-wrapper" style="padding-top: 14px;">
+
+    <div class="chatbot-container">
+
+      <!-- Chatbot Header -->
+      <div class="chatbot-header">
+        <div class="chatbot-header-left">
+          <div class="chatbot-avatar">🤖</div>
+          <div class="chatbot-info">
+            <h2>HopeBot Support Companion</h2>
+            <p>24/7 Grounding, De-escalation & Crisis Navigation</p>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-danger" style="padding:6px 14px; font-size:0.8rem;" onclick="CrisisModal.open()">
+            Direct Hotlines 📞
+          </button>
+        </div>
+      </div>
+
+      <!-- Mandatory Medical & Crisis Disclaimer Banner -->
+      <div class="chatbot-disclaimer" role="note">
+        <span style="font-size:1.2rem;">⚠️</span>
+        <div>
+          <strong>Important Safety Notice:</strong> HopeBot is an automated supportive assistant and is <strong>NOT</strong> a replacement for professional therapy, counseling, or medical diagnosis. If you are having thoughts of suicide or self-harm, please contact <strong>988</strong> (US Suicide & Crisis Lifeline) or your campus emergency services immediately.
+        </div>
+      </div>
+
+      <!-- Messages Stream -->
+      <div class="chatbot-messages" id="chatbotMessages" role="log" aria-live="polite">
+
+        <!-- Welcome Initial Message -->
+        <div class="bot-msg">
+          <div class="bot-icon-small">🤖</div>
+          <div class="bot-msg-bubble">
+            <p>Hello. I'm <strong>HopeBot</strong>, your anonymous mental health support companion.</p>
+            <p>I'm here to listen, guide you through grounding exercises when panic strikes, help navigate academic burnout, or connect you with immediate crisis support.</p>
+            <p style="font-size:0.85rem; color:var(--text-light); margin-top:8px;">
+              <em>How are you feeling right now? You can type anything freely, or click one of the quick suggestions below:</em>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Suggestion Chips -->
+      <div class="chatbot-chips">
+        <button class="chip-btn" data-query="I am having an acute panic attack">
+          🧘 Panic / Acute Anxiety
+        </button>
+        <button class="chip-btn" data-query="I am completely overwhelmed with exams and deadlines">
+          📚 Exam & Study Overwhelm
+        </button>
+        <button class="chip-btn" data-query="I feel completely alone and isolated">
+          🌧️ Feeling Lonely
+        </button>
+        <button class="chip-btn" data-query="I can't sleep and my mind is racing">
+          🌙 Can't Sleep / Racing Mind
+        </button>
+        <button class="chip-btn" data-query="Walk me through 5-4-3-2-1 Grounding">
+          ✋ 5-4-3-2-1 Grounding
+        </button>
+        <button class="chip-btn" data-query="Teach me Box Breathing">
+          🌬️ Box Breathing
+        </button>
+      </div>
+
+      <!-- Chatbot Input -->
+      <form class="chat-input-area" id="chatbotForm">
+        <input
+          type="text"
+          id="chatbotInput"
+          class="chat-input"
+          placeholder="Type what you are experiencing... (e.g. 'I feel stressed about exams', 'Help me calm down')"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" class="btn-send" title="Send message" aria-label="Send message">
+          ➤
+        </button>
+      </form>
+
+    </div>
+
+  </main>
+
+  <!-- Core Scripts -->
+  <script src="js/main.js?v=2.6"></script>
+  <script src="js/chatbot.js?v=2.6"></script>
+</body>
+</html>

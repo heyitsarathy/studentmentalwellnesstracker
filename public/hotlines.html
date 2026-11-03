@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Hotlines & Campus Directory | MindHaven</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📞</text></svg>">
+</head>
+<body>
+
+  <!-- Universal Crisis Top Banner -->
+  <aside class="crisis-top-banner" role="alert" aria-label="Urgent Crisis Resources">
+    <div class="crisis-banner-content">
+      <span class="crisis-badge-urgent">URGENT HELP</span>
+      <span>If you are in immediate danger, please dial <strong>988</strong> or your local emergency number (911).</span>
+      <a href="tel:988" class="crisis-call-link">Call or Text 988 Now &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🌱</span>
+      <div>
+        <span>MindHaven</span>
+        <span class="brand-tagline">Safe & Anonymous Student Space</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="chat.html">💬 Peer Chat</a></li>
+      <li><a href="chatbot.html">🤖 Crisis Bot</a></li>
+      <li><a href="resources.html">🌿 Resources</a></li>
+      <li><a href="mood.html">📊 Mood Tracker</a></li>
+      <li><a href="hotlines.html" class="active">📞 Hotlines</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-ambient" id="ambientToggle" title="Play soothing ambient rain sound">
+        🎧 Ambient Sound
+      </button>
+
+      <div class="user-badge current-user-badge" title="Click to regenerate anonymous username">
+        <span class="author-dot" style="background:#3182ce"></span>
+        <span>Loading...</span>
+      </div>
+
+      <button class="btn-crisis-quick" onclick="CrisisModal.open()" aria-label="Open emergency crisis resources">
+        🚨 Get Help Now
+      </button>
+
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+
+    <div class="page-header">
+      <h1>Verified Crisis Hotlines & Student Support</h1>
+      <p>All resources below are free, confidential, available 24/7, and staffed by trained crisis counselors.</p>
+    </div>
+
+    <!-- Category 1: Immediate Crisis Lines -->
+    <h2 style="font-size:1.3rem; margin-bottom:14px; color:#c53030;">🚨 24/7 Immediate Crisis Lifelines</h2>
+    <div class="hotlines-grid">
+
+      <!-- 988 Lifeline -->
+      <article class="hotline-card urgent">
+        <div class="hotline-name">988 Suicide & Crisis Lifeline</div>
+        <div class="hotline-availability">🟢 Available 24/7/365 • Free & Confidential</div>
+        <p class="hotline-desc">
+          The national mental health emergency number for the United States and Canada. Provides immediate support for anyone experiencing thoughts of suicide, severe anxiety, substance use challenges, or acute emotional distress.
+        </p>
+        <div class="hotline-contact-box">
+          <div>
+            <div style="font-size:0.75rem; color:var(--text-light); text-transform:uppercase; font-weight:700;">Phone / Text</div>
+            <div class="hotline-number">988</div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <a href="tel:988" class="btn btn-danger" style="padding:8px 16px; font-size:0.85rem;">📞 Call</a>
+            <a href="sms:988" class="btn btn-secondary" style="padding:8px 16px; font-size:0.85rem;">💬 Text</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Crisis Text Line -->
+      <article class="hotline-card urgent">
+        <div class="hotline-name">Crisis Text Line</div>
+        <div class="hotline-availability">🟢 Available 24/7 • Free Text Support</div>
+        <p class="hotline-desc">
+          Preferred by students who do not feel comfortable speaking out loud in a dorm or library. Connects you to a live, trained volunteer crisis counselor via SMS within minutes.
+        </p>
+        <div class="hotline-contact-box">
+          <div>
+            <div style="font-size:0.75rem; color:var(--text-light); text-transform:uppercase; font-weight:700;">Text Keyword</div>
+            <div class="hotline-number">HOME to 741741</div>
+          </div>
+          <a href="sms:741741&body=HOME" class="btn btn-danger" style="padding:8px 16px; font-size:0.85rem;">💬 Text HOME</a>
+        </div>
+      </article>
+
+      <!-- The Trevor Project -->
+      <article class="hotline-card urgent">
+        <div class="hotline-name">The Trevor Project</div>
+        <div class="hotline-availability">🟢 24/7 LGBTQ+ Youth Specialized</div>
+        <p class="hotline-desc">
+          The leading suicide prevention and crisis intervention organization for LGBTQ+ young people. Safe, affirming, and confidential counselors.
+        </p>
+        <div class="hotline-contact-box">
+          <div>
+            <div style="font-size:0.75rem; color:var(--text-light); text-transform:uppercase; font-weight:700;">Toll-Free Phone</div>
+            <div class="hotline-number" style="font-size:1.05rem;">1-866-488-7386</div>
+          </div>
+          <a href="tel:18664887386" class="btn btn-danger" style="padding:8px 16px; font-size:0.85rem;">📞 Call</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Category 2: Specialized & Ongoing Support -->
+    <h2 style="font-size:1.3rem; margin:28px 0 14px; color:var(--primary);">🌿 Specialized Student Resources</h2>
+    <div class="hotlines-grid">
+
+      <!-- SAMHSA -->
+      <article class="hotline-card">
+        <div class="hotline-name">SAMHSA National Helpline</div>
+        <div class="hotline-availability">🟢 24/7 • English & Spanish</div>
+        <p class="hotline-desc">
+          Federal referral service for individuals facing mental health challenges or substance use disorders. Helps find local, low-cost community health centers.
+        </p>
+        <div class="hotline-contact-box">
+          <div class="hotline-number" style="font-size:1.05rem;">1-800-662-4357</div>
+          <a href="tel:18006624357" class="btn btn-primary" style="padding:6px 14px; font-size:0.85rem;">Call</a>
+        </div>
+      </article>
+
+      <!-- RAINN -->
+      <article class="hotline-card">
+        <div class="hotline-name">RAINN National Sexual Assault Hotline</div>
+        <div class="hotline-availability">🟢 24/7 Confidential Support</div>
+        <p class="hotline-desc">
+          Confidential support for survivors of sexual assault, relationship violence, and harassment on or off campus.
+        </p>
+        <div class="hotline-contact-box">
+          <div class="hotline-number" style="font-size:1.05rem;">1-800-656-4673</div>
+          <a href="tel:18006564673" class="btn btn-primary" style="padding:6px 14px; font-size:0.85rem;">Call</a>
+        </div>
+      </article>
+
+      <!-- Steve Fund (BIPOC Students) -->
+      <article class="hotline-card">
+        <div class="hotline-name">The Steve Fund (BIPOC Students)</div>
+        <div class="hotline-availability">🟢 24/7 Text Support</div>
+        <p class="hotline-desc">
+          Dedicated to supporting the mental health and emotional well-being of young people of color and minority college students.
+        </p>
+        <div class="hotline-contact-box">
+          <div class="hotline-number" style="font-size:1rem;">Text STEVE to 741741</div>
+          <a href="sms:741741&body=STEVE" class="btn btn-primary" style="padding:6px 14px; font-size:0.85rem;">Text</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Category 3: International Resources -->
+    <div style="background:#edf2f7; border-radius:12px; padding:24px; margin-top:28px;">
+      <h3 style="font-size:1.15rem; margin-bottom:10px;">🌍 International Students & Global Crisis Contacts</h3>
+      <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:16px;">
+        If you are studying outside North America or are an international student seeking localized support:
+      </p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-bottom:18px;">
+        <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid var(--border);">
+          <strong>United Kingdom:</strong><br/>
+          <span>Call 111 (NHS Mental Health) or 116 123 (Samaritans)</span>
+        </div>
+        <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid var(--border);">
+          <strong>Australia:</strong><br/>
+          <span>Call 13 11 14 (Lifeline)</span>
+        </div>
+        <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid var(--border);">
+          <strong>India:</strong><br/>
+          <span>Call 1800-599-0019 (KIRAN Mental Health)</span>
+        </div>
+        <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid var(--border);">
+          <strong>European Union:</strong><br/>
+          <span>Call 112 (Universal Emergency)</span>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="https://findahelpline.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Find A Helpline (Search 130+ Countries) &rarr;
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Core Scripts -->
+  <script src="js/main.js?v=2.6"></script>
+</body>
+</html>

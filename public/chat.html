@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonymous Peer Chat | MindHaven</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
+</head>
+<body>
+
+  <!-- Universal Crisis Top Banner -->
+  <aside class="crisis-top-banner" role="alert" aria-label="Urgent Crisis Resources">
+    <div class="crisis-banner-content">
+      <span class="crisis-badge-urgent">URGENT HELP</span>
+      <span>If you are in acute crisis, please contact <strong>988</strong> (Call/Text 24/7) or campus health services.</span>
+      <a href="tel:988" class="crisis-call-link">Call or Text 988 Now &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🌱</span>
+      <div>
+        <span>MindHaven</span>
+        <span class="brand-tagline">Safe & Anonymous Student Space</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="chat.html" class="active">💬 Peer Chat</a></li>
+      <li><a href="chatbot.html">🤖 Crisis Bot</a></li>
+      <li><a href="resources.html">🌿 Resources</a></li>
+      <li><a href="mood.html">📊 Mood Tracker</a></li>
+      <li><a href="hotlines.html">📞 Hotlines</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-ambient" id="ambientToggle" title="Play soothing ambient rain sound">
+        🎧 Ambient Sound
+      </button>
+
+      <div class="user-badge current-user-badge" title="Click to regenerate anonymous username">
+        <span class="author-dot" style="background:#3182ce"></span>
+        <span>Loading...</span>
+      </div>
+
+      <button class="btn-crisis-quick" onclick="CrisisModal.open()" aria-label="Open emergency crisis resources">
+        🚨 Get Help Now
+      </button>
+
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Main Chat Workspace -->
+  <main class="main-wrapper" style="padding-top: 14px;">
+
+    <!-- Chat Application Layout -->
+    <div class="chat-layout">
+
+      <!-- Left Sidebar: Topic-Based Rooms -->
+      <aside class="chat-sidebar" aria-label="Support Rooms">
+        <div class="sidebar-header">
+          <span class="sidebar-title">Support Rooms</span>
+          <span style="font-size: 0.78rem; color: var(--text-light); font-weight: 600;">Anonymous</span>
+        </div>
+
+        <ul class="rooms-list" id="roomsList">
+          <li class="room-item active" data-room="general">
+            <div class="room-item-info">
+              <span class="room-icon">🤝</span>
+              <span>General Support</span>
+            </div>
+            <span class="room-badge-count">...</span>
+          </li>
+
+          <li class="room-item" data-room="anxiety">
+            <div class="room-item-info">
+              <span class="room-icon">🧘</span>
+              <span>Anxiety & Panic</span>
+            </div>
+            <span class="room-badge-count">...</span>
+          </li>
+
+          <li class="room-item" data-room="academic">
+            <div class="room-item-info">
+              <span class="room-icon">📚</span>
+              <span>Academic Stress</span>
+            </div>
+            <span class="room-badge-count">...</span>
+          </li>
+
+          <li class="room-item" data-room="loneliness">
+            <div class="room-item-info">
+              <span class="room-icon">🌧️</span>
+              <span>Loneliness</span>
+            </div>
+            <span class="room-badge-count">...</span>
+          </li>
+
+          <li class="room-item" data-room="relationships">
+            <div class="room-item-info">
+              <span class="room-icon">💬</span>
+              <span>Relationships</span>
+            </div>
+            <span class="room-badge-count">...</span>
+          </li>
+
+          <li class="room-item" data-room="grief">
+            <div class="room-item-info">
+              <span class="room-icon">🕊️</span>
+              <span>Grief & Loss</span>
+            </div>
+            <span class="room-badge-count">...</span>
+          </li>
+        </ul>
+
+        <div class="sidebar-guidelines-cta">
+          <div>🛡️ <strong>Safety Reminder:</strong></div>
+          <div>All peers are students. No personal info. Report harmful content.</div>
+          <span class="guidelines-link" onclick="GuidelinesModal.open()">Review Community Rules &rarr;</span>
+        </div>
+      </aside>
+
+      <!-- Right Main Chat Area -->
+      <section class="chat-main">
+
+        <!-- Active Room Header -->
+        <div class="chat-header">
+          <div class="chat-room-title">
+            <button id="toggleRoomsMobile" class="btn btn-secondary" style="display:none; padding:4px 8px; font-size:0.8rem;" aria-label="Toggle rooms list">
+              📂 Rooms
+            </button>
+            <span id="currentRoomIcon" style="font-size: 1.5rem;">🤝</span>
+            <div>
+              <h2 id="currentRoomTitle">General Peer Support</h2>
+              <div class="chat-room-desc" id="currentRoomDesc">Open, compassionate conversation on daily student life.</div>
+            </div>
+          </div>
+
+          <div class="chat-active-indicator">
+            <span class="status-dot"></span>
+            <span id="activeRoomCount">Connecting...</span>
+          </div>
+        </div>
+
+        <!-- Community Guidelines Banner -->
+        <div class="chat-guidelines-banner">
+          <span>🤝 <em>Be kind, listen openly, and keep this space safe. Never share private contact info.</em></span>
+          <button class="btn-report" style="font-size:0.75rem; text-decoration:underline;" onclick="GuidelinesModal.open()">
+            Guidelines
+          </button>
+        </div>
+
+        <!-- Messages Feed -->
+        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+          <div class="system-chat-message">
+            Welcome to MindHaven Anonymous Peer Chat. Remember: you are chatting with fellow students. Be kind and respectful.
+          </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div class="typing-indicator" id="typingIndicator"></div>
+
+        <!-- Input Bar -->
+        <form class="chat-input-area" id="chatForm">
+          <input
+            type="text"
+            id="chatInput"
+            class="chat-input"
+            placeholder="Share what is on your mind anonymously... (Press Enter to send)"
+            autocomplete="off"
+            maxlength="800"
+            required
+          />
+          <button type="submit" class="btn-send" title="Send message" aria-label="Send message">
+            ➤
+          </button>
+        </form>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Report Message Modal -->
+  <div id="reportModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 style="color:var(--crisis); display:flex; align-items:center; gap:8px;">
+          🚩 Report Harmful Message
+        </h3>
+        <button class="modal-close" onclick="closeReportModal()">&times;</button>
+      </div>
+      <form id="reportForm">
+        <div class="modal-body">
+          <div id="reportMsgDetails"></div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;">
+            Help us maintain a safe, welcoming student sanctuary. Why are you reporting this message?
+          </p>
+          <label style="display:block; font-size:0.82rem; font-weight:700; margin-bottom:6px;">Select Reason:</label>
+          <select id="reportReason" style="width:100%; padding:10px; border:1px solid var(--border); border-radius:6px; font-size:0.9rem; margin-bottom:16px;">
+            <option value="Harassment or cyberbullying">Harassment or cyberbullying</option>
+            <option value="Self-harm or suicide encouragement">Self-harm or suicide encouragement</option>
+            <option value="Hate speech or discrimination">Hate speech or discrimination</option>
+            <option value="Sharing personal contact information">Sharing personal contact information</option>
+            <option value="Spam or malicious links">Spam or malicious links</option>
+            <option value="Other concern">Other concern</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeReportModal()">Cancel</button>
+          <button type="submit" class="btn btn-danger">Submit Safety Report</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/main.js?v=2.6"></script>
+  <script src="js/chat.js?v=2.6"></script>
+</body>
+</html>

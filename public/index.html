@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindHaven | Student Mental Wellness & Anonymous Peer Support</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+</head>
+<body>
+
+  <!-- Universal Crisis Top Banner -->
+  <aside class="crisis-top-banner" role="alert" aria-label="Urgent Crisis Resources">
+    <div class="crisis-banner-content">
+      <span class="crisis-badge-urgent">URGENT HELP</span>
+      <span>If you are in crisis, please contact <strong>988</strong> (US Suicide & Crisis Lifeline) or local emergency services.</span>
+      <a href="tel:988" class="crisis-call-link">Call or Text 988 Now &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🌱</span>
+      <div>
+        <span>MindHaven</span>
+        <span class="brand-tagline">Safe & Anonymous Student Space</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">🏠 Home</a></li>
+      <li><a href="chat.html">💬 Peer Chat</a></li>
+      <li><a href="chatbot.html">🤖 Crisis Bot</a></li>
+      <li><a href="resources.html">🌿 Resources</a></li>
+      <li><a href="mood.html">📊 Mood Tracker</a></li>
+      <li><a href="hotlines.html">📞 Hotlines</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-ambient" id="ambientToggle" title="Play soothing ambient rain sound">
+        🎧 Ambient Sound
+      </button>
+
+      <div class="user-badge current-user-badge" title="Click to regenerate anonymous username">
+        <span class="author-dot" style="background:#3182ce"></span>
+        <span>Loading...</span>
+      </div>
+
+      <button class="btn-crisis-quick" onclick="CrisisModal.open()" aria-label="Open emergency crisis resources">
+        🚨 Get Help Now
+      </button>
+
+      <button class="mobile-menu-btn" aria-label="Toggle navigation menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-wrapper">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-pill">
+        <span>🛡️ 100% Anonymous • No Account • No Data Tracking</span>
+      </div>
+      <h1 class="hero-title">You Don't Have to Carry Campus Stress Alone.</h1>
+      <p class="hero-subtitle">
+        MindHaven is a calm, judgment-free peer support space for students. Connect with fellow students in topic-based rooms, practice grounding techniques, track your emotional patterns, and access 24/7 crisis hotlines.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="chat.html" class="btn btn-primary">
+          💬 Enter Anonymous Peer Chat
+        </a>
+        <a href="chatbot.html" class="btn btn-secondary">
+          🤖 Talk to HopeBot (Crisis AI)
+        </a>
+        <a href="mood.html" class="btn btn-secondary">
+          📊 Check-in Your Mood
+        </a>
+      </div>
+    </section>
+
+    <!-- Glassmorphic Live Peer Room Pulse Ticker -->
+    <div style="background: rgba(255, 255, 255, 0.6); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 14px 22px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: var(--glass-shadow-sm);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="status-dot"></span>
+        <strong style="font-size: 0.92rem; color: #1a365d;">Live Anonymous Spaces Active:</strong>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <a href="chat.html#anxiety" class="tag-chip" style="font-size: 0.8rem; text-decoration:none;">🧘 Anxiety & Panic</a>
+        <a href="chat.html#academic" class="tag-chip" style="font-size: 0.8rem; text-decoration:none;">📚 Academic Stress</a>
+        <a href="chat.html#loneliness" class="tag-chip" style="font-size: 0.8rem; text-decoration:none;">🌧️ Loneliness</a>
+        <a href="chat.html#relationships" class="tag-chip" style="font-size: 0.8rem; text-decoration:none;">💬 Relationships</a>
+        <a href="chat.html#general" class="tag-chip" style="font-size: 0.8rem; text-decoration:none;">🤝 General Support</a>
+      </div>
+    </div>
+
+    <!-- Medical & Safety Disclaimer Notice -->
+    <div class="disclaimer-box" role="note">
+      <span class="disclaimer-icon">⚠️</span>
+      <div>
+        <strong>Notice & Safety Disclaimer:</strong> MindHaven is an anonymous peer listening and wellness tool. It is <strong>NOT</strong> a replacement for licensed medical treatment, therapy, or emergency psychiatric intervention. If you or someone you know is in immediate danger or considering self-harm, please reach out to <a href="tel:988" style="font-weight:700; text-decoration:underline; color:#7b341e;">988</a> or emergency services immediately.
+      </div>
+    </div>
+
+    <!-- Core Feature Showcase Cards -->
+    <section class="features-grid">
+
+      <!-- Feature 1: Anonymous Chat -->
+      <article class="feature-card">
+        <div class="feature-icon-wrapper feature-icon-blue">💬</div>
+        <h3>Anonymous Peer Chat</h3>
+        <p>
+          Join focused support rooms without ever sharing your name, email, or social profiles. Rooms include Anxiety, Academic Burnout, Loneliness, Grief, and Relationships.
+        </p>
+        <a href="chat.html" class="feature-link">Join a Room &rarr;</a>
+      </article>
+
+      <!-- Feature 2: Crisis Support Bot -->
+      <article class="feature-card">
+        <div class="feature-icon-wrapper feature-icon-red">🤖</div>
+        <h3>Crisis Support Bot ("HopeBot")</h3>
+        <p>
+          A supportive assistant trained to provide acute de-escalation, 5-4-3-2-1 sensory grounding, and immediate emergency escalation for crisis or high-risk language.
+        </p>
+        <a href="chatbot.html" class="feature-link">Chat with HopeBot &rarr;</a>
+      </article>
+
+      <!-- Feature 3: Resource Library -->
+      <article class="feature-card">
+        <div class="feature-icon-wrapper feature-icon-green">🌿</div>
+        <h3>Interactive Resource Library</h3>
+        <p>
+          Engage in visual Box & 4-7-8 Breathing exercises, step-by-step sensory grounding tools, and private client-side reflection journaling prompts.
+        </p>
+        <a href="resources.html" class="feature-link">Explore Exercises &rarr;</a>
+      </article>
+
+      <!-- Feature 4: Mood Tracker -->
+      <article class="feature-card">
+        <div class="feature-icon-wrapper feature-icon-purple">📊</div>
+        <h3>Daily Mood & Streak Tracker</h3>
+        <p>
+          Take a 10-second daily pause to log your emotional state with context tags and notes. Visualize your 7-day trend curve with full privacy deletion control.
+        </p>
+        <a href="mood.html" class="feature-link">Log Today's Mood &rarr;</a>
+      </article>
+
+    </section>
+
+    <!-- Safety & Privacy Pledge -->
+    <section class="privacy-pledge">
+      <div class="pledge-icon">🔒</div>
+      <div class="pledge-content">
+        <h4>Our Safety & Privacy Guarantee to Students</h4>
+        <p>
+          Students often avoid campus counseling or commercial apps out of fear that their struggles will follow their academic records. MindHaven collects <strong>zero personal identifying information</strong>. Your identity is a randomly generated pseudonym, chat logs are wiped from memory, and all mood logs belong entirely to your anonymous token.
+        </p>
+      </div>
+      <div>
+        <button class="btn btn-secondary" onclick="GuidelinesModal.open()" style="white-space:nowrap;">
+          Read Guidelines
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-disclaimer">
+        <strong>Crisis Warning:</strong> If you are experiencing acute thoughts of suicide, self-harm, or severe psychiatric distress, please dial <a href="tel:988">988</a> (US & Canada) or contact your campus police/health center immediately. MindHaven is a student-focused hackathon demo engineered for empathetic peer connection.
+      </p>
+      <div class="footer-links">
+        <a href="chat.html">Peer Rooms</a> •
+        <a href="chatbot.html">HopeBot</a> •
+        <a href="resources.html">Breathing & Grounding</a> •
+        <a href="hotlines.html">Emergency Hotlines</a> •
+        <a href="javascript:void(0)" onclick="GuidelinesModal.open()">Community Guidelines</a>
+      </div>
+      <p style="margin-top:14px; font-size:0.75rem; color:#a0aec0;">
+        &copy; 2026 MindHaven Project. Built for Student Mental Wellness & Peer Solidarity.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/main.js?v=2.6"></script>
+</body>
+</html>
