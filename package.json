@@ -1,0 +1,29 @@
+{
+  "name": "student-mental-wellness-tracker",
+  "version": "1.0.0",
+  "description": "MindHaven - Anonymous Mental Health & Peer Support Platform for Students",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "mental-health",
+    "student-wellness",
+    "peer-support",
+    "crisis-support",
+    "hackathon",
+    "anonymous-chat",
+    "socketio"
+  ],
+  "author": "Hackathon Team",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "socket.io": "^4.8.4"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.4"
+  }
+}
